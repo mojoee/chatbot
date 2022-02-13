@@ -1,3 +1,32 @@
+import random
+
+def respond(message, responses):
+    if message in responses:
+        bot_message = random.choice(responses[message])
+    else:
+        bot_message = random.choice(responses["default"])
+
+    return bot_message
+
+def find_related_question(user_input):
+    if "name" in user_input:
+        related_question = "what's your name?"
+    elif "weather" in user_input:
+        related_question = "what's today's weather?"
+    elif "how are" in user_input:
+        related_question = "how are you?"
+    elif "robot" in user_input:
+        related_question = "are you a robot?"
+    else:
+        related_question = ""
+
+    return related_question
+
+
+def send_message(message, user_template, bot_template):
+    print(user_template.format(message))
+    response = respond(message)
+    print(bot_template.format(response))
 
 
 if __name__ =="__main__":
@@ -49,5 +78,16 @@ if __name__ =="__main__":
 
 
     }
+
+    # interaction
+
+    while True:
+        my_input = input().lower()
+        related_text =  find_related_question(my_input)
+        send_message(related_text, user_template, bot_template)
+
+        if my_input =="exit" or my_input =="stop":
+            break
+    
 
 
