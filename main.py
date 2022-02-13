@@ -47,7 +47,7 @@ if __name__ =="__main__":
     responses = {
         "what's your name?": [
             f"My name is {name}",
-            f"Call me{name}",
+            f"Call me {name}",
             f"I usually go by {name}"
             
         ],
@@ -82,7 +82,7 @@ if __name__ =="__main__":
     # interaction
 
     while True:
-        my_input = input("Hi, please ask me a question!").lower()
+        my_input = input("Ask me a question!").lower()
         related_text =  find_related_question(my_input)
         send_message(related_text, responses, user_template, bot_template)
 
