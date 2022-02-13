@@ -14,18 +14,18 @@ def find_related_question(user_input):
     elif "weather" in user_input:
         related_question = "what's today's weather?"
     elif "how are" in user_input:
-        related_question = "how are you?"
+        related_question = "How are you?"
     elif "robot" in user_input:
-        related_question = "are you a robot?"
+        related_question = "Are you a robot?"
     else:
         related_question = ""
 
     return related_question
 
 
-def send_message(message, user_template, bot_template):
+def send_message(message, responses, user_template, bot_template):
     print(user_template.format(message))
-    response = respond(message)
+    response = respond(message, responses)
     print(bot_template.format(response))
 
 
@@ -37,7 +37,7 @@ if __name__ =="__main__":
 
     # 2. templates
     bot_template = "Bot: {0}"
-    user_template = f"{user_name}: {0} "
+    user_template = user_name + " : {0} "
 
     # 3. core
     name = "Funny bot"
@@ -82,9 +82,9 @@ if __name__ =="__main__":
     # interaction
 
     while True:
-        my_input = input().lower()
+        my_input = input("Hi, please ask me a question!").lower()
         related_text =  find_related_question(my_input)
-        send_message(related_text, user_template, bot_template)
+        send_message(related_text, responses, user_template, bot_template)
 
         if my_input =="exit" or my_input =="stop":
             break
